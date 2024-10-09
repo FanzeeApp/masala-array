@@ -1,0 +1,144 @@
+JavaScript-dagi arraylar (massivlar) ma'lumotlar tuzilmasining muhim qismi bo'lib, ular o'xshash yoki turli xil qiymatlar to'plamini bir o'rinda saqlash imkonini beradi. Arraylar index (indeks) bo'yicha tartiblangan bo'lib, har bir elementning o'z o'rni (indeksi) mavjud. Indekslar 0 dan boshlanadi, ya'ni birinchi elementning indeksi 0 bo'ladi. Arraylar har xil turdagi ma'lumotlarni (raqamlar, stringlar, obyektlar va hatto boshqa arraylarni) o'z ichiga olishi mumkin.
+
+Arraylarni yaratish
+Array yaratishning bir nechta usullari bor:
+
+Literal orqali:
+
+javascript
+Копировать код
+let fruits = ["olma", "banan", "uzum"];
+Array konstruktori orqali:
+
+javascript
+Копировать код
+let numbers = new Array(1, 2, 3, 4);
+Array elementlariga murojaat qilish
+Array elementlariga ularning indekslari yordamida murojaat qilinadi:
+
+javascript
+Копировать код
+let fruits = ["olma", "banan", "uzum"];
+console.log(fruits[0]); // "olma"
+Agar mavjud bo'lmagan indeksga murojaat qilinsa, undefined qiymati qaytariladi.
+
+Arrayning uzunligi
+Arrayning uzunligini length xususiyati orqali aniqlash mumkin:
+
+javascript
+Копировать код
+let fruits = ["olma", "banan", "uzum"];
+console.log(fruits.length); // 3
+Arraylarga element qo'shish va olib tashlash
+push() va pop(): Arrayning oxiriga element qo'shish uchun push(), oxirgi elementni olib tashlash uchun pop() funksiyalari ishlatiladi.
+
+javascript
+Копировать код
+let fruits = ["olma", "banan"];
+fruits.push("shaftoli");  // ["olma", "banan", "shaftoli"]
+fruits.pop();             // ["olma", "banan"]
+unshift() va shift(): Arrayning boshiga element qo'shish uchun unshift(), boshidagi elementni olib tashlash uchun shift() ishlatiladi.
+
+javascript
+Копировать код
+let fruits = ["banan", "uzum"];
+fruits.unshift("olma");   // ["olma", "banan", "uzum"]
+fruits.shift();           // ["banan", "uzum"]
+Array ichida elementlarni o'zgartirish va o'chirish
+Elementlar indeks orqali o'zgartirilishi yoki o'chirilishi mumkin:
+
+javascript
+Копировать код
+let fruits = ["olma", "banan", "uzum"];
+fruits[1] = "shaftoli";  // ["olma", "shaftoli", "uzum"]
+Elementni o'chirish uchun delete operatori ishlatiladi, lekin bu array uzunligini o'zgartirmaydi, faqat qiymatni o'chirib, o'sha joyda undefined qoldiradi:
+
+javascript
+Копировать код
+delete fruits[1];  // ["olma", undefined, "uzum"]
+Arraylarni birlashtirish va bo'lish
+concat(): Ikki yoki undan ortiq arraylarni birlashtiradi:
+
+javascript
+Копировать код
+let fruits1 = ["olma", "banan"];
+let fruits2 = ["uzum", "shaftoli"];
+let allFruits = fruits1.concat(fruits2);  // ["olma", "banan", "uzum", "shaftoli"]
+slice(): Arrayning bir qismini yangi arrayga nusxalaydi:
+
+javascript
+Копировать код
+let fruits = ["olma", "banan", "uzum", "shaftoli"];
+let someFruits = fruits.slice(1, 3);  // ["banan", "uzum"]
+Arrayni tartiblash va qaytarish
+sort(): Array elementlarini alfavit bo'yicha tartiblaydi. Agar raqamlar tartiblanayotgan bo'lsa, ularni to'g'ri tartiblash uchun maxsus funksiya talab qilinadi:
+
+javascript
+Копировать код
+let numbers = [10, 2, 30, 5];
+numbers.sort((a, b) => a - b);  // [2, 5, 10, 30]
+reverse(): Array elementlarini teskari tartibda qaytaradi:
+
+javascript
+Копировать код
+let fruits = ["olma", "banan", "uzum"];
+fruits.reverse();  // ["uzum", "banan", "olma"]
+Arrayni iteratsiya qilish
+Arraydagi elementlarni birma-bir ko'rib chiqish uchun for sikli yoki forEach() funksiyasidan foydalaniladi:
+
+for sikli:
+
+javascript
+Копировать код
+let fruits = ["olma", "banan", "uzum"];
+for (let i = 0; i < fruits.length; i++) {
+    console.log(fruits[i]);
+}
+forEach() metodi:
+
+javascript
+Копировать код
+let fruits = ["olma", "banan", "uzum"];
+fruits.forEach(function(item, index) {
+    console.log(item, index);
+});
+Arrayni tekshirish
+includes(): Arrayda ma'lum bir element bor-yo'qligini tekshiradi:
+
+javascript
+Копировать код
+let fruits = ["olma", "banan", "uzum"];
+console.log(fruits.includes("banan"));  // true
+indexOf() va lastIndexOf(): Elementning indeksini qaytaradi, agar topilmasa -1 qaytaradi:
+
+javascript
+Копировать код
+let fruits = ["olma", "banan", "uzum", "banan"];
+console.log(fruits.indexOf("banan"));  // 1
+console.log(fruits.lastIndexOf("banan"));  // 3
+Arrayning boshqa foydali metodlari
+join(): Array elementlarini stringga aylantiradi, elementlar orasiga berilgan belgi qo'yiladi:
+
+javascript
+Копировать код
+let fruits = ["olma", "banan", "uzum"];
+let joinedFruits = fruits.join(", ");  // "olma, banan, uzum"
+map(): Har bir elementni o'zgartirib, yangi array yaratadi:
+
+javascript
+Копировать код
+let numbers = [1, 2, 3, 4];
+let squares = numbers.map(num => num * num);  // [1, 4, 9, 16]
+filter(): Shartga javob beradigan elementlarni tanlab, yangi array yaratadi:
+
+javascript
+Копировать код
+let numbers = [1, 2, 3, 4, 5];
+let evenNumbers = numbers.filter(num => num % 2 === 0);  // [2, 4]
+JavaScript arraylari keng ko'lamli operatsiyalarni qo'llab-quvvatlaydi va dastur tuzishda juda qulay vositadir. Ularni to'g'ri ishlatib, katta va kichik ma'lumotlar to'plamini samarali boshqarish mumkin.
+
+
+
+
+
+
